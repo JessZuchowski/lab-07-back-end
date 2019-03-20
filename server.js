@@ -19,18 +19,8 @@ app.use(cors());
 //location API route
 app.get('/location', searchToLatLong)
 app.get('/weather', searchWeather);
+app.get('/meetup', searchMeetup);
 
-
-//path to location
-// app.get('/location', (request, response) => {
-//   console.log('request at 14', request.query);
-
-//   const locationData = searchToLatLong(request.query.data)
-//   console.log('location', request.query.data);
-//   response.send(locationData);
-//   //adding error response
-//   //response.status(500).send('Sorry, something went wrong');
-// });
 
 //turn the server on so it will listen
 app.listen(PORT, () =>console.log(`listening on PORT ${PORT}`));
@@ -68,35 +58,13 @@ function searchToLatLong(request, response) {
     .catch(error => handleError(error, response));
 }
 
-
-
-// function searchToLatLong(query) {
-//   const geoData = require('./data/geo.json');
-//   const location = new Location(geoData);
-//   console.log('location at 35', location);
-//   location.search_query = query;
-//   console.log('geo data location ', location);
-//   return location;
-// }
-
-
 function Location(query, location) {
-  //console.log(location.body);
+  console.log({location});
   this.search_query = query;
   this.formatted_query = location.formatted_address;
   this.latitude = location.geometry.location.lat;
   this.longitude = location.geometry.location.lng;
 }
-
-
-
-// function Location(data) {
-//   console.log('got to constructor');
-//   this.formatted_query = data.results[0].formatted_address;
-//   this.latitude = data.results[0].geometry.location.lat;
-//   this.longitude = data.results[0].geometry.location.lng;
-// }
-
 
 //Refactoring weather to use array.maps. Callback function for the /weather path
 
@@ -107,7 +75,7 @@ function searchWeather(request, response) {
   return superagent.get(url)
   // asynchronous call that renders weather results while superagent is contacting API
     .then(weatherResults => {
-      //console logs array of weather results 
+      //console logs array of weather results
       console.log(weatherResults.body.daily.data);
       //looking into weather results to map out new array of each day
       const weatherSummaries = weatherResults.body.daily.data.map(day => {
@@ -124,24 +92,21 @@ function Weather(day){
   this.forecast = day.summary;
   this.time = new Date(day.time * 1000).toString().slice(0, 15);
 }
-// function searchWeather(query) {
-//   const weatherArray=[];
-//   const darkSkyData = require('./data/darksky.json');
-//   console.log(darkSkyData.daily);
-//   darkSkyData.daily.data.forEach(day =>{
-//     weatherArray.push(new Weather(day));
-//   })
-//   console.log('weather Array', weatherArray);
-//   weatherArray.search_query = query;
-//   return weatherArray;
-// }
 
 
-// function Weather(weatherData){
-//   console.log('got to weather constructor');
-//   this.forecast = weatherData.summary;
-//   console.log('hi', this.forecast);
-//   let goodTime = weatherData.time;
-//   this.time= new Date(goodTime);
-//   console.log('hi', this.time);
-// }
+//A function called searchMeetup. Callback function for /meetup path and corresponding constructor function using same structure as search weather function
+function searchMeetup(request, response) {
+  const url = `https://api.meetup.com/2/events?key=${process.env.MEETUP_API_KEY}&group_urlname=ny-tech&sign=true`
+  return superagent.get(url)
+    .then(meetupResults =>{
+      const meetupSummaries = meetupResults.body.results.venue.name.map(day => {
+        return new Meetup(day);
+      })
+      response.send(meetupSummaries);
+    })
+    .catch(error => handleError(error, response));
+}
+
+function Meetup(day){
+  this.venue = day.venue;
+}
