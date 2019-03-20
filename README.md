@@ -43,12 +43,12 @@ Finish time: 1120
 
 Actual time needed to complete: 25 minutes
 
-#Number and name of feature: Feature#3 Review 2 - add meetup API
-Estimate of time needed to complete: 15 min
+#Number and name of feature: Feature#3 Review 2 - add meetup API, comment everything
+Estimate of time needed to complete: 30 min
 
 Start time: 12:25
 Driver: Aliya, Navigator: Jess
 
-Finish time:
+Finish time: unfinished meetup API call at 1330
 
-Actual time needed to complete: 25 minutes
+Actual time needed to complete: 1 hour, 5 minutes
