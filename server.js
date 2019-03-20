@@ -45,7 +45,7 @@ app.get('/testing', (request, response) =>{
 function searchToLatLong(request, response) {
   //Takes the google maps api link, replaces the query data with the user input, and the key with the geocode API variable
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${request.query.data}&key=${process.env.GEOCODE_API_KEY}`
- //uses superagent to asynchronyously access the URL while performing the other related maps functions
+  //uses superagent to asynchronyously access the URL while performing the other related maps functions
   return superagent.get(url)
     .then(result => {
       response.send(new Location(request.query.data, result.body.results[0]))
@@ -91,7 +91,7 @@ function Weather(day){
 //not fully working yet, but we think we're on the right track. Need to figure out what parameters to pass to the group_url to make it access the location
 function searchMeetup(request, response) {
   console.log('You have reached the searchMeetup function')
-  const url = `https://api.meetup.com/2/events?key=${process.env.MEETUP_API_KEY}&group_urlname=ny-tech&sign=true`
+  const url = `https://api.meetup.com/find/upcoming_events?photo-host=public&page=20&sig_id=275550877&lon=${request.query.data.longitude}&${request.query.data.latitude}&sig=${process.env.MEETUP_API_KEY}`
   console.log(url)
   return superagent.get(url)
     .then(meetupResults =>{
