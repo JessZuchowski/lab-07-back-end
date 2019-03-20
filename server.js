@@ -81,7 +81,7 @@ function searchToLatLong(request, response) {
 
 
 function Location(query, location) {
-  console.log(location.body);
+  //console.log(location.body);
   this.search_query = query;
   this.formatted_query = location.formatted_address;
   this.latitude = location.geometry.location.lat;
@@ -98,14 +98,22 @@ function Location(query, location) {
 // }
 
 
+//Refactoring weather to use array.maps. Callback function for the /weather path
+
 function searchWeather(request, response) {
   console.log(request.query);
+  //gets url for API key and feeds into superagent
   const url = `https://api.darksky.net/forecast/${process.env.WEATHER_API_KEY}/${request.query.data.latitude},${request.query.data.longitude}`
   return superagent.get(url)
+  // asynchronous call that renders weather results while superagent is contacting API
     .then(weatherResults => {
+      //console logs array of weather results 
+      console.log(weatherResults.body.daily.data);
+      //looking into weather results to map out new array of each day
       const weatherSummaries = weatherResults.body.daily.data.map(day => {
         return new Weather(day);
-      });
+      })
+      //sends weatherSummaries to search weather function
       response.send(weatherSummaries);
     })
     .catch(error => handleError(error, response));
