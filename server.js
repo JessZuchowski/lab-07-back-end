@@ -29,7 +29,7 @@ app.get('/location', (request, response) => {
   console.log('location', request.query.data);
   response.send(locationData);
   //adding error response
-  response.status(500).send('Sorry, something went wrong');
+  //response.status(500).send('Sorry, something went wrong');
 });
 
 //turn the server on so it will listen
@@ -45,7 +45,7 @@ app.get('/weather', (request, response)=>{
 //error handler
 function handleError(err, res) {
   console.error(err);
-  if (res) res.status(500).('Sorry, something has gone very wrong and you should turn back');
+  if (res) res.status(500).send('Sorry, something has gone very wrong and you should turn back');
 }
 
 //TEST ROUTE
