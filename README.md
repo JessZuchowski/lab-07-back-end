@@ -22,11 +22,11 @@ JavaScript, jQuery, Handlebars, express, nodemon, CORS, dotenv
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 -->
 
-Number and name of feature: ________________________________
+Number and name of feature: Feature#1 Hook-up APIs
+Estimate of time needed to complete: 30 min
 
-Estimate of time needed to complete: _____
-
-Start time: _____
+Start time: 1022
+Driver: Jess, Navigator: Aliya
 
 Finish time: _____
 
