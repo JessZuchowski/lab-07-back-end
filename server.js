@@ -81,7 +81,7 @@ function searchToLatLong(request, response) {
 
 
 function Location(query, location) {
-  console.log(location.body);
+  //console.log(location.body);
   this.search_query = query;
   this.formatted_query = location.formatted_address;
   this.latitude = location.geometry.location.lat;
