@@ -28,6 +28,16 @@ Estimate of time needed to complete: 30 min
 Start time: 1022
 Driver: Jess, Navigator: Aliya
 
-Finish time: _____
+Finish time: 1045
 
-Actual time needed to complete: _____
+Actual time needed to complete: 23 minutes
+
+Number and name of feature: Feature#2 Review 1 refactor weather to array.map
+Estimate of time needed to complete: 30 min
+
+Start time: 1055
+Driver: Jess, Navigator: Aliya
+
+Finish time: 1120
+
+Actual time needed to complete: 25 minutes
