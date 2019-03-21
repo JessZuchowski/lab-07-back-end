@@ -19,7 +19,7 @@ app.use(cors());
 //location API route
 app.get('/location', searchToLatLong)
 app.get('/weather', searchWeather)
-app.get('/meetup', searchMeetup);
+app.get('/meetups', searchMeetup);
 
 
 //turn the server on so it will listen
@@ -91,11 +91,13 @@ function Weather(day){
 //not fully working yet, but we think we're on the right track. Need to figure out what parameters to pass to the group_url to make it access the location
 function searchMeetup(request, response) {
   console.log('You have reached the searchMeetup function')
-  const url = `https://api.meetup.com/find/upcoming_events?photo-host=public&page=20&sig_id=275550877&lon=${request.query.data.longitude}&${request.query.data.latitude}&sig=${process.env.MEETUP_API_KEY}`
+  //const url = `https://api.meetup.com/find/upcoming_events?photo-host=public&page=20&sig_id=275550877&lon=${request.query.data.longitude}&${request.query.data.latitude}&sig=${process.env.MEETUP_API_KEY}`
+  const url = `https://api.meetup.com/2/events?key=${process.env.MEETUP_API_KEY}&group_urlname=ny-tech&sign=true`
+
   console.log(url)
   return superagent.get(url)
     .then(meetupResults =>{
-      const meetupSummaries = meetupResults.body.results.venue.name.map(day => {
+      const meetupSummaries = meetupResults.body.results.map(day => {
         return new Meetup(day);
       })
       response.send(meetupSummaries);
@@ -103,6 +105,9 @@ function searchMeetup(request, response) {
     .catch(error => handleError(error, response));
 }
 
-function Meetup(day){
-  this.venue = day.venue;
+function Meetup(link, name, creation_date, host){
+  this.link = link;
+  this.name = name;
+  this.creation_date = creation_date;
+  this.host = host;
 }
