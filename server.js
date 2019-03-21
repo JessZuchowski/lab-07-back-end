@@ -92,9 +92,10 @@ function Weather(day){
 function searchMeetup(request, response) {
   console.log('You have reached the searchMeetup function')
   //const url = `https://api.meetup.com/find/upcoming_events?photo-host=public&page=20&sig_id=275550877&lon=${request.query.data.longitude}&${request.query.data.latitude}&sig=${process.env.MEETUP_API_KEY}`
+  // const url = `https://api.meetup.com/2/events?key=${process.env.MEETUP_API_KEY}&group_urlname=ny-tech&sign=true`
   const url = `https://api.meetup.com/2/events?key=${process.env.MEETUP_API_KEY}&group_urlname=ny-tech&sign=true`
 
-  console.log(url)
+
   return superagent.get(url)
     .then(meetupResults =>{
       const meetupSummaries = meetupResults.body.results.map(day => {
