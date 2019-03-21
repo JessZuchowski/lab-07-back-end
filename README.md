@@ -22,7 +22,7 @@ JavaScript, jQuery, Handlebars, express, nodemon, CORS, dotenv
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 -->
 
-Number and name of feature: Feature#1 Hook-up APIs
+#Number and name of feature: Feature#1 Hook-up APIs
 Estimate of time needed to complete: 30 min
 
 Start time: 1022
@@ -32,7 +32,8 @@ Finish time: 1045
 
 Actual time needed to complete: 23 minutes
 
-Number and name of feature: Feature#2 Review 1 refactor weather to array.map
+
+#Number and name of feature: Feature#2 Review 1 refactor weather to array.map
 Estimate of time needed to complete: 30 min
 
 Start time: 1055
@@ -41,3 +42,13 @@ Driver: Jess, Navigator: Aliya
 Finish time: 1120
 
 Actual time needed to complete: 25 minutes
+
+#Number and name of feature: Feature#3 Review 2 - add meetup API, comment everything
+Estimate of time needed to complete: 30 min
+
+Start time: 12:25
+Driver: Aliya, Navigator: Jess
+
+Finish time: unfinished meetup API call at 1330
+
+Actual time needed to complete: 1 hour, 5 minutes
